@@ -8,7 +8,7 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-from scrapyProject.config import REQUEST_TIMEOUT
+from scrapyProject.config import REQUEST_TIMEOUT, RedisConfig
 
 BOT_NAME = 'scrapyProject'
 
@@ -94,3 +94,10 @@ DOWNLOAD_TIMEOUT = REQUEST_TIMEOUT
 RETRY_ENABLED = True
 # 重传次数
 RETRY_TIMES = 10
+
+# scrapy-redis相关的设置
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"  # 定义一个去重的类，用来将url去重
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"  # 指定队列
+SCHEDULER_PERSIST = True  # 将程序持久化保存
+# 这里是redis的设置可以自行修改 REDIS_URL = "redis://127.0.0.1:6379
+REDIS_URL = "redis://%s:%s" % (RedisConfig.HOST, RedisConfig.PORT)
