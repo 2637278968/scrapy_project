@@ -43,8 +43,9 @@ class ioRedis(object):
     def sadd(self, key, *args):
         self.__conn.sadd(key, *args)
 
-    def sunionstore(self, key1, key2, key3):
-        return self.__conn.sunionstore(key1, key2, key3)
+    def smembers(self, key):
+        print(key)
+        return self.__conn.smembers(key)
 
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, '_instance'):
@@ -61,7 +62,9 @@ class ioRedis(object):
 if __name__ == '__main__':
     ioredis = ioRedis()
     ioredis.sadd('hha', 'book-title', 'book_author')
-    ioredis.sadd('hha','heihei')
+    ioredis.sadd('hha', 'heihei')
+    res = ioredis.smembers('hha')
+    print(res)
     #
     # ioredis.hmset('book-傲世丹神-1', {
     #     'chapter_title': 'title',
