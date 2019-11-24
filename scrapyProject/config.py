@@ -8,6 +8,9 @@ OVER_WRITE_FLAG = False
 # 超时时间，超过了就重传requests
 REQUEST_TIMEOUT = 20
 
+# 开启线程数
+CONCURRENT_REQUESTS = 32
+
 
 class RedisConfig(object):
     HOST = 'localhost'

@@ -8,7 +8,7 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-from scrapyProject.config import REQUEST_TIMEOUT, RedisConfig
+from scrapyProject.config import REQUEST_TIMEOUT, RedisConfig,CONCURRENT_REQUESTS
 
 BOT_NAME = 'scrapyProject'
 
@@ -23,6 +23,7 @@ ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = CONCURRENT_REQUESTS
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
