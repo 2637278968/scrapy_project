@@ -3,7 +3,18 @@
 + 目前是1.0的版本没有断点续传也
 + scrapyProject目录下的config是配置文件包含了redis的配置，是否覆盖的配置，有每个请求超过多少秒就认为失败重新发起请求的参数REQUEST_TIMEOUT
 + 项目目录结构：
-    -
+    - 爬虫所有逻辑都在spider文件下的quanben.py里面
+        + start_requests函数开始发请求的url，所有分类的url都要放入url
+        + parse_type函数 处理每一个分类的请求包含下一页和每一本小说
+        + parse_book函数 处理点击目录
+        + parse_book_list函数 处理每一章的url
+        + parse_book_content 处理每一章的内容
+        + parse_book_content_detail 因为每次都要点阅读全文才能出下半页数据所有要单独处理
+        + save_data 封装数据存入redis操作
+        + parse开头的函数之间传参都是通过meta属性来传递
+        + 貌似全本小说网是通过设置cookie来达到访问控制的
+        + 然后有时候某个请求会超时，需要重新传，所幸scrapy封装了自动重传的东西，可以通过修改设置来达到高效爬取
+        
     - io_redis.py是封装的redis操作
 + 执行命令的方法 先cd到scrapyProject里面然后执行命令 scrapy crawl quanben
 + 爬取之后的存储结构

@@ -43,9 +43,9 @@ class QuanbenSpider(scrapy.Spider):
         :return:
         """
         # 翻页的请求
-        # next_url = response.xpath('//p[@class="page_next"]/a/@href').extract_first()
-        # if next_url:
-        #     yield scrapy.Request(url=BASER_URL + next_url, callback=self.parse_type)
+        next_url = response.xpath('//p[@class="page_next"]/a/@href').extract_first()
+        if next_url:
+            yield scrapy.Request(url=BASER_URL + next_url, callback=self.parse_type)
 
         # 每一本小说的页面
         book_list = response.xpath('//div[@class="row"]//h3/a/@href')
