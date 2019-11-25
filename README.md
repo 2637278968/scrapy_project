@@ -1,6 +1,7 @@
 
 + 项目所需要的包都在requirements.txt里面可以通过pip install -r requirements.txt来安装
-+ 目前是1.0的版本没有断点续传也
++ 这个分支包含了scrapy-redis有断点续传功能
+    - 建议每次只爬一个类别的数据这样能比较快速的爬取数据，在文件quanben.py里面的start_requests函数里面的urls参数可以每次注释只留一个类目
 + scrapyProject目录下的config是配置文件包含了redis的配置，是否覆盖的配置，有每个请求超过多少秒就认为失败重新发起请求的参数REQUEST_TIMEOUT
 + 项目目录结构：
     - 爬虫所有逻辑都在spider文件下的quanben.py里面
