@@ -137,12 +137,16 @@ class QuanbenSpider(scrapy.Spider):
 
     def parse_book_content_detail(self, response):
         text = response.text
-        p1 = re.compile(r'[(](.*?)[)]', re.S)  # 最小匹配
-        # p1 = re.compile(r'^a=read.jsonp&callback=(.*?)&pinyin$', re.S)  # 最小匹配
-        # 获取返回字符串里面的数据
-        data = re.findall(p1, text)
+        # p1 = re.compile(r'[(](.*?)[)]', re.S)  # 最小匹配
+        # # 获取返回字符串里面的数据
+        # data = re.findall(p1, text)
+        # 因为json.loads老是报错莫名奇妙然后换成re提取
+        p2 = re.compile(r'[:]["](.*?)["][}]', re.S)  # 最小匹配
+        d = re.findall(p2, text)
+        content_detal = d[0].replace(r"\/", "/")
         meta = response.meta
-        meta["chapter_content"] = meta["chapter_content"] + json.loads(data[0])["content"]
+        meta["chapter_content"] = meta["chapter_content"] +content_detal
+
         quanben_item = QuanBenItem()
         quanben_item['chapter_title'] = meta['chapter_title']
         quanben_item['chapter_id'] = meta['chapter_id']
