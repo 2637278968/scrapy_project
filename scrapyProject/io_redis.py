@@ -61,10 +61,11 @@ class ioRedis(object):
 
 if __name__ == '__main__':
     ioredis = ioRedis()
-    ioredis.sadd('hha', 'book-title', 'book_author')
-    ioredis.sadd('hha', 'heihei')
-    res = ioredis.smembers('hha')
+    # ioredis.sadd('hha', 'book-title', 'book_author')
+    # ioredis.sadd('hha', 'heihei')
+    res = ioredis.smembers('book_title')
     print(res)
+    print(len(res))
     #
     # ioredis.hmset('book-傲世丹神-1', {
     #     'chapter_title': 'title',
@@ -86,3 +87,4 @@ if __name__ == '__main__':
     #
     #
     # test(1, 2, 3)
+#     redis.exceptions.ResponseError: MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance is configured to report errors during writes if RDB snapshotting fails (stop-writes-on-bgsave-error option). Please check the Redis logs for details about the RDB error.

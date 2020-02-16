@@ -112,12 +112,14 @@ class QuanbenSpider(scrapy.Spider):
             chapter_id = re.findall(p1, res_args)[0]
         except Exception as e:
             print(e)
-            print("链接出错了没法获取请自己查看", meta['request_url'])
+            print("链接出错了没法获取请自己查看 获取参数", meta['request_url'])
+            print("链接出错了没法获取请自己查看 获取参数", response.body_as_unicode())
             return
-        # 章节列表
+        # 章节列表 st
         chapter_title = response.xpath("//div/h1/text()").extract_first()
         if not chapter_title:
-            print('该章节可能没有了请自行查看', meta['request_url'])
+            print('该章节可能没有了请自行查看 获取标题', meta['request_url'])
+            print('该章节可能没有了请自行查看 获取标题', response.body_as_unicode())
             return
 
         content_detail_url = DETAIL_CONTENT_URL + '?c=book&a=read.jsonp&callback=%s&pinyin=%s&id=%s' % (
@@ -145,8 +147,12 @@ class QuanbenSpider(scrapy.Spider):
         d = re.findall(p2, text)
         content_detal = d[0].replace(r"\/", "/")
         meta = response.meta
+<<<<<<< HEAD
         meta["chapter_content"] = meta["chapter_content"] +content_detal
 
+=======
+        meta["chapter_content"] = meta["chapter_content"] + content_detal
+>>>>>>> scrapy_redis
         quanben_item = QuanBenItem()
         quanben_item['chapter_title'] = meta['chapter_title']
         quanben_item['chapter_id'] = meta['chapter_id']

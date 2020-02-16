@@ -20,6 +20,7 @@ pyOpenSSL==19.1.0
 queuelib==1.5.0
 redis==3.3.11
 Scrapy==1.8.0
+scrapy-redis==0.6.8
 service-identity==18.1.0
 six==1.13.0
 Twisted==19.10.0
