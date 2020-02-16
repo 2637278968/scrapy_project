@@ -26,4 +26,4 @@
     "book_title":书名, 
     "book_author":书的作者 
     }
-    - 书名存在集合 book_title里面
+    - 书名存在集合 book_title里面,后期可以根据这里来统计爬了多少本小说以及每本小说的章节
